@@ -21,12 +21,9 @@ public class JobController {
 	
 	@RequestMapping("/list")
 	public void getJobList(){
-		Map<String, Object> map=new HashMap<String, Object>();
-		/*List<Integer> ids=new ArrayList<Integer>();
-		ids.add(1);
-		ids.add(2);*/
-		map.put("id", 1);
-		List<Job> list=jobService.getJobList(map);
+		Job job=new Job();
+		job.setId(2);
+		List<Job> list=jobService.getJobList(job);
 		for(int i=0;i<list.size();i++){
 			System.out.println(list.get(i).getJobname());
 		}

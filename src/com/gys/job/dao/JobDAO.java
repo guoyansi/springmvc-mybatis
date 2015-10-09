@@ -19,9 +19,9 @@ public class JobDAO {
 		factory=db.getFactory();
 	}
 	
-	public List<Job> getJobList(Map<String, Object> map){
+	public List<Job> getJobList(Job job){
 		SqlSession session=factory.openSession();
-		List<Job> list=session.selectList("job.getJobList",map);
+		List<Job> list=session.selectList("job.getJobList",job);
 		session.close();
 		return list;
 	}

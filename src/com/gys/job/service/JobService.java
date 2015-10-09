@@ -16,8 +16,8 @@ public class JobService {
 	@Autowired
 	private JobDAO jobDAO;
 	
-	public List<Job> getJobList(Map<String, Object> map){
-		return jobDAO.getJobList(map);
+	public List<Job> getJobList(Job job){
+		return jobDAO.getJobList(job);
 	}
 	
 }
