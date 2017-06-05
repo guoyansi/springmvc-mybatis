@@ -1,4 +1,4 @@
-package com.gys.service.impl;
+package com.fun.gys.service.impl;
 
 import java.util.List;
 
@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gys.dao.IRoleDao;
-import com.gys.pojo.RoleBean;
-import com.gys.service.IRoleService;
+import com.fun.gys.bean.RoleBean;
+import com.fun.gys.dao.IRoleDao;
+import com.fun.gys.service.IRoleService;
+
 
 @Service
 public class RoleserviceImpl implements IRoleService{
@@ -20,13 +21,12 @@ public class RoleserviceImpl implements IRoleService{
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public int insertRole(RoleBean role) {
-		// TODO Auto-generated method stub
-		return 0;
+		return iRoleDao.insertRole(role);
 	}
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public int updateRole(RoleBean role) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

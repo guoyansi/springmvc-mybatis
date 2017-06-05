@@ -1,0 +1,11 @@
+<Resource name="jdbc/spring-mybatis"
+	auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost:3306/mybatis?zeroDateTimeBehavior=convertToNull"
+	username="root"
+	password="gys"
+	maxActive="50"
+	maxIdle="30"
+	maxWait="10000"
+	/>

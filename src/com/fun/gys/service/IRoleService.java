@@ -1,13 +1,11 @@
-package com.gys.dao;
+package com.fun.gys.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import com.fun.gys.bean.RoleBean;
 
-import com.gys.pojo.RoleBean;
 
-@Repository
-public interface IRoleDao {
+public interface IRoleService {
 	int insertRole(RoleBean role);
 	int updateRole(RoleBean role);
 	int deleteRole(RoleBean role);

@@ -1,6 +1,5 @@
-package com.gys.pojo;
+package com.fun.gys.bean;
 
-import java.util.Date;
 
 public class RoleBean {
 	private Integer id;
