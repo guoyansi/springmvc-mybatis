@@ -9,6 +9,20 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <!--springmv日志debug异常，javax.naming.NameNotFoundException  start-->
+   <context-param>  
+        <param-name>spring.profiles.active</param-name>  
+        <param-value>dev</param-value>  
+    </context-param>  
+    <context-param>  
+        <param-name>spring.profiles.default</param-name>  
+        <param-value>dev</param-value>  
+    </context-param>  
+    <context-param>  
+        <param-name>spring.liveBeansView.mbeanDomain</param-name>  
+        <param-value>dev</param-value>  
+    </context-param>  
+    <!--springmv日志debug异常，javax.naming.NameNotFoundException  end-->
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>
