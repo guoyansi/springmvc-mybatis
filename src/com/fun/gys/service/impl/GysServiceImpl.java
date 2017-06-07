@@ -7,45 +7,45 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fun.gys.bean.RoleBean;
-import com.fun.gys.dao.IRoleDao;
-import com.fun.gys.service.IRoleService;
+import com.fun.gys.bean.GysBean;
+import com.fun.gys.dao.IGysDao;
+import com.fun.gys.service.IGysService;
 
 
 @Service
-public class RoleserviceImpl implements IRoleService{
+public class GysServiceImpl implements IGysService{
 
 	@Autowired
-	private IRoleDao iRoleDao;
+	private IGysDao iGysDao;
 	
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public int insertRole(RoleBean role) {
-		return iRoleDao.insertRole(role);
+	public int insertRole(GysBean role) {
+		return iGysDao.insertRole(role);
 	}
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public int updateRole(RoleBean role) {
+	public int updateRole(GysBean role) {
 		
 		return 0;
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public int deleteRole(RoleBean role) {
+	public int deleteRole(GysBean role) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Transactional(propagation=Propagation.SUPPORTS)
 	@Override
-	public RoleBean getRole(Integer id) {
-		return iRoleDao.getRole(id);
+	public GysBean getRole(Integer id) {
+		return iGysDao.getRole(id);
 	}
 	@Transactional(propagation=Propagation.SUPPORTS)
 	@Override
-	public List<RoleBean> findRoles(String roleName) {
-		return iRoleDao.findRoles(roleName);
+	public List<GysBean> findRoles(String roleName) {
+		return iGysDao.findRoles(roleName);
 	}
 
 }

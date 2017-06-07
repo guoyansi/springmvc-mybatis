@@ -20,6 +20,6 @@
   	</typeAliases>
   	<!--指定映射器路径  -->
   	<mappers>
- 		<mapper resource="com/fun/gys/mapper/role.xml"/> 	
+ 		<mapper resource="com/fun/gys/mapper/gys.xml"/> 	
   	</mappers>
   </configuration>

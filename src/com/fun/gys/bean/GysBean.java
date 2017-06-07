@@ -1,7 +1,7 @@
 package com.fun.gys.bean;
 
 
-public class RoleBean {
+public class GysBean {
 	private Integer id;
 	private String roleName;
 	private String note;

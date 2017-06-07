@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fun.gys.dao.IRoleDao">
+<mapper namespace="com.fun.gys.dao.IGysDao">
 
-  <insert id="insertRole" parameterType="com.fun.gys.bean.RoleBean">
+  <insert id="insertRole" parameterType="com.fun.gys.bean.GysBean">
   	insert into role 
   	(roleName,note)
   	values
@@ -13,13 +13,13 @@
   <delete id="deleteRole" parameterType="int">
   	delete from role where id=#{id}
   </delete>
-  <select id="getRole" parameterType="int" resultType="com.fun.gys.bean.RoleBean">
+  <select id="getRole" parameterType="int" resultType="com.fun.gys.bean.GysBean">
 	select id,role_name as roleName,note from role where id=#{id}  	
   </select>
-  <select id="findRoles" parameterType="string" resultType="com.fun.gys.bean.RoleBean">
+  <select id="findRoles" parameterType="string" resultType="com.fun.gys.bean.GysBean">
   	select id,role_name as roleName,note from role where role_name like concat('%',#{roleName},'%');
   </select>
-  <update id="updateRole" parameterType="com.fun.gys.bean.RoleBean">
+  <update id="updateRole" parameterType="com.fun.gys.bean.GysBean">
   	update role
   	<set>
   		<if test="roleName!=null">role_name=#{roleName},</if>
