@@ -11,6 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>角色</title>
+   <link rel="stylesheet" type="text/css" href="<%=path %>/resource/css/gys.css">
   </head>
   
   <body>

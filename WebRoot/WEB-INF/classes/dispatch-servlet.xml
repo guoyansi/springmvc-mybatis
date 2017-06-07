@@ -26,29 +26,13 @@
 	<context:annotation-config />
 	
 	<!-- 总拦截器 -->
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class="com.xdxx.ssm.interceptor.MyInterceptor"></bean>
+			<bean class="com.item.interceptor.MyInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
-	<!--json转换器,它可以将结果转化  -->
-	<!-- <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>application/json;charset=UTF-8</value>
-			</list>
-		</property>
-	</bean> -->
+	</mvc:interceptors>
 	
-	<!-- spring视图拦截器 -->
-	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>	
-				<ref bean="mappingJacksonHttpMessageConverter"/>
-			</list>
-		</property>	
-	</bean> -->
 	<!-- 视图解析器 -->
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
