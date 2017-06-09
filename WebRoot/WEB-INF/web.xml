@@ -23,13 +23,17 @@
         <param-value>dev</param-value>  
     </context-param>  
     <!--springmv日志debug异常，javax.naming.NameNotFoundException  end-->
+    <!-- 导入spring配置文件 start -->
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>
   </context-param>
+  <!-- 导入spring配置文件 end -->
+  
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <!-- 导入spring-mvc配置文件 start -->
   <servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -43,6 +47,7 @@
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+   <!-- 导入spring-mvc配置文件 end -->
   <session-config>
   	<session-timeout>30</session-timeout>
   </session-config>
