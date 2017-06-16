@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
   <script type="text/javascript">
   	function goPage(){
-  		window.location.href="<%=path%>/gys/page.do?id=3";
+  		window.location.href="<%=path%>/gysDemo/page.do?id=3";
   	}
   </script>
 </html>

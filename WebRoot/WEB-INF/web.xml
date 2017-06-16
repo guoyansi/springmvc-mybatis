@@ -41,16 +41,16 @@
 	</context-param> -->
   <!-- 导入spring-mvc配置文件 start -->
   <servlet>
-    <servlet-name>dispatcher</servlet-name>
+    <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:dispatch-servlet.xml</param-value>
+		<param-value>classpath:applicationContext-mvc.xml</param-value>
 	</init-param>
     <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>dispatcher</servlet-name>
+    <servlet-name>SpringMVC</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
    <!-- 导入spring-mvc配置文件 end -->
@@ -62,7 +62,7 @@
    <!-- web跨域过滤器 -->
     <filter>
 	    <filter-name>CrossFilter</filter-name>
-	    <filter-class>com.item.filter.CrossFilter</filter-class>
+	    <filter-class>com.gys.sm.item.filter.CrossFilter</filter-class>
 	</filter>
 	<filter-mapping>
 	     <filter-name>CrossFilter</filter-name>
