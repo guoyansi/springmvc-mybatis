@@ -13,24 +13,30 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
      
-     <!-- 支持注解 -->
+     <!-- 启用注解,支持注解 -->
 	<context:annotation-config />
-	<!-- 自动扫描的包 -->
-	<context:component-scan base-package="com" use-default-filters="false">
-	<!-- 通过注解去过滤被扫描的类 -->
-	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
-	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	<!-- 自动扫描的包-->
+	<context:component-scan base-package="com">
+		<!-- 通过注解去过滤被扫描的类 -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
+	<!-- 监听器 -->
+	<!-- <bean class="com.item.listener.SystemInitListener" /> -->
 	<!-- 数据源,注入我们所需要的数据源 -->
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
-			<value>java:comp/env/jdbc/spring-mybatis</value>
+			<value>java:comp/env/jdbc/springmvc-mybatis</value>
 		</property>
 	</bean>
 	<!-- MyBatis的SqlsessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="prototype">
+		<!-- mapper文件配置 -->
+		<property name="mapperLocations" value="classpath*:com/**/mapper/*-mapper.xml" />
+		<!-- 数据源 --> 
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+		<!-- mybatis的配置文件 -->
+		<property name="configLocation" value="classpath:sqlMapConfig.xml" />
 	</bean>
 	<!-- sqlSessionTemplate -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
@@ -42,12 +48,34 @@
 	</bean>
 	<!-- 使用注解管理事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+	<!-- 事务拦截配置 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="query*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="create*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="del*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="do*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="batch*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="(execution(* com.item.service.impl..*(..))) or (execution(* com.fun.*.service.impl..*(..)))" />
+	</aop:config>
+	
+	
 	<!-- 采用自动扫描方式 创建 mapper bean -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com" />
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
 		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
 	</bean>
-	
 	
 </beans>

@@ -4,25 +4,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fun.gys.dao.IGysDao">
 
-  <insert id="insertRole" parameterType="com.fun.gys.bean.GysBean">
-  	insert into role 
+  <insert id="insertRole" parameterType="com.fun.gys.bean.GysBean" keyProperty="id" useGeneratedKeys="true">
+  	insert into gys 
   	(roleName,note)
   	values
   	(#{roleName},#{note})
   </insert>
   <delete id="deleteRole" parameterType="int">
-  	delete from role where id=#{id}
+  	delete from gys where id=#{id}
   </delete>
-  <select id="getRole" parameterType="int" resultType="com.fun.gys.bean.GysBean">
-	select id,role_name as roleName,note from role where id=#{id}  	
+  <select id="getRole" resultType="com.fun.gys.bean.GysBean">
+	select id,roleName,note from gys
+  </select>
+  <select id="getRoleById" parameterType="int" resultType="com.fun.gys.bean.GysBean">
+	select id,roleName ,note from gys where id=#{id}  	
   </select>
   <select id="findRoles" parameterType="string" resultType="com.fun.gys.bean.GysBean">
-  	select id,role_name as roleName,note from role where role_name like concat('%',#{roleName},'%');
+  	select id,roleName,note from gys where roleName like concat('%',#{roleName},'%');
   </select>
   <update id="updateRole" parameterType="com.fun.gys.bean.GysBean">
-  	update role
+  	update gys
   	<set>
-  		<if test="roleName!=null">role_name=#{roleName},</if>
+  		<if test="roleName!=null">roleName=#{roleName},</if>
   		<if test="note !=null">note=#{note},</if>
   	</set>
   	where id=#{id}

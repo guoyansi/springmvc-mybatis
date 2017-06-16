@@ -6,9 +6,10 @@ import com.fun.gys.bean.GysBean;
 
 
 public interface IGysService {
-	int insertRole(GysBean role);
-	int updateRole(GysBean role);
-	int deleteRole(GysBean role);
-	GysBean getRole(Integer id);
-	List<GysBean> findRoles(String roleName);
+	int insertRole(GysBean role) throws Exception;
+	int updateRole(GysBean role) throws Exception;
+	int deleteRole(GysBean role) throws Exception;
+	GysBean getRoleById(Integer id) throws Exception;
+	List<GysBean> getRole() throws Exception;
+	List<GysBean> findRoles(String roleName) throws Exception;
 }

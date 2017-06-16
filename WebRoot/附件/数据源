@@ -1,0 +1,11 @@
+数据源位置:D:\Tomcat 7.0\conf\context.xml
+<Resource name="jdbc/springmvc-mybatis"
+	auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost:3306/springmvc-mybatis?zeroDateTimeBehavior=convertToNull&amp;allowMultiQueries=true"
+	username="root"
+	password="gys"
+	maxActive="50"
+	maxIdle="30"
+	maxWait="10000" />

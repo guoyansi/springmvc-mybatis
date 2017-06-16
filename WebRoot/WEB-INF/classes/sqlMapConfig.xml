@@ -12,6 +12,8 @@
   		<setting name="lazyLoadingEnabled" value="true"/>
   		<!--设置超时时间,它决定驱动等待一个数据库响应的时间  -->
   		<setting name="defaultStatementTimeout" value="25000"/>
+  		<!-- 防止mybatis的log4j配置被忽略 -->
+  		<setting name="logImpl" value="LOG4J"/>
   	</settings>
   	<!--别名配置  -->
   	<typeAliases>
@@ -20,6 +22,7 @@
   	</typeAliases>
   	<!--指定映射器路径  -->
   	<mappers>
- 		<mapper resource="com/fun/gys/mapper/gys.xml"/> 	
+ 		<!-- <mapper resource="com/fun/gys/mapper/gys.xml"/> -->
+ 		<!-- <package name="com.fun.gys.dao"/> -->
   	</mappers>
   </configuration>

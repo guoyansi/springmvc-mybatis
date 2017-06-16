@@ -9,9 +9,10 @@ import com.fun.gys.bean.GysBean;
 
 @Repository
 public interface IGysDao {
-	int insertRole(GysBean role);
-	int updateRole(GysBean role);
-	int deleteRole(GysBean role);
-	GysBean getRole(Integer id);
-	List<GysBean> findRoles(String roleName);
+	int insertRole(GysBean role) throws Exception;
+	int updateRole(GysBean role) throws Exception;
+	int deleteRole(int id) throws Exception;
+	List<GysBean> getRole() throws Exception;
+	GysBean getRoleById(int id) throws Exception;
+	List<GysBean> findRoles(String roleName) throws Exception;
 }

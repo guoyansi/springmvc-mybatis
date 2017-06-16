@@ -15,12 +15,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <h1>角色</h1>
-   <%-- <ul>
+   <h1>列表</h1>
+   <ul>
    	<c:forEach items="${list }" var="role">
 		<li>ID:${role.id };name:${role.roleName };note:${role.note }</li>   		
    	</c:forEach>
-   </ul> --%>
+   </ul>
    ${res.status };${res.msg}
+   <div style="color:red;">ID:${bean.id };name:${bean.roleName };note:${bean.note }</div>
   </body>
 </html>

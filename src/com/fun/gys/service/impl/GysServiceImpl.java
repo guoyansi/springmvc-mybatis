@@ -18,33 +18,42 @@ public class GysServiceImpl implements IGysService{
 	@Autowired
 	private IGysDao iGysDao;
 	
-	@Transactional(propagation=Propagation.REQUIRED)
+	//@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public int insertRole(GysBean role) {
-		return iGysDao.insertRole(role);
+	public int insertRole(GysBean role) throws Exception {
+		int num= iGysDao.insertRole(role);
+		int c=0;
+		//int a=num/c;
+		//iGysDao.deleteRole(role.getId());
+		//num= iGysDao.insertRole(role);
+		return num;
 	}
-	@Transactional(propagation=Propagation.REQUIRED)
+	//@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public int updateRole(GysBean role) {
+	public int updateRole(GysBean role) throws Exception{
 		
 		return 0;
 	}
 
-	@Transactional(propagation=Propagation.REQUIRED)
+	//@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public int deleteRole(GysBean role) {
+	public int deleteRole(GysBean role) throws Exception{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Transactional(propagation=Propagation.SUPPORTS)
+	//@Transactional(propagation=Propagation.SUPPORTS)
 	@Override
-	public GysBean getRole(Integer id) {
-		return iGysDao.getRole(id);
+	public List<GysBean> getRole() throws Exception{
+		return iGysDao.getRole();
 	}
-	@Transactional(propagation=Propagation.SUPPORTS)
+	//@Transactional(propagation=Propagation.SUPPORTS)
 	@Override
-	public List<GysBean> findRoles(String roleName) {
+	public GysBean getRoleById(Integer id) throws Exception{
+		return iGysDao.getRoleById(id);
+	}
+	//@Transactional(propagation=Propagation.SUPPORTS)
+	@Override
+	public List<GysBean> findRoles(String roleName) throws Exception{
 		return iGysDao.findRoles(roleName);
 	}
 

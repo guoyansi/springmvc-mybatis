@@ -1,6 +1,9 @@
 package com.fun.gys.controller;
 
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,7 @@ public class GysController {
 	private IGysService iGysService;
 	
 	@RequestMapping("/page")
-	public ModelAndView goPage(ModelAndView view){
+	public ModelAndView goPage(ModelAndView view,HttpServletRequest request){
 		Map<String, Object> map=ReturnRes.getMap();
 		ReturnRes.addResToMap(map, "返回成功");
 		try {
@@ -28,7 +31,12 @@ public class GysController {
 			bean.setRoleName("roleName12");
 			bean.setNote("Note3423");
 			int i=iGysService.insertRole(bean);
-			System.out.println("影响行数:>>>>>>>>>>>"+i);
+			//System.out.println("影响行数:>>>>>>>>>>>"+i);
+			List<GysBean> list=iGysService.getRole();
+			view.addObject("list",list);
+			int id=Integer.parseInt(request.getParameter("id"));
+			GysBean gys=iGysService.getRoleById(id);
+			view.addObject("bean",gys);
 			view.setViewName("gys/gys");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,12 +45,17 @@ public class GysController {
 		return view;
 	}
 	
-	@RequestMapping("/getRole")
+	@RequestMapping("/getRoleById")
 	public GysBean getRole(@RequestParam("id") int id){
-		long start=System.currentTimeMillis();
-		GysBean role=iGysService.getRole(id);
-		long end=System.currentTimeMillis();
-		System.out.println(end-start);
+		GysBean role=null;
+		try {
+			long start=System.currentTimeMillis();
+			role=iGysService.getRoleById(id);
+			long end=System.currentTimeMillis();
+			System.out.println(end-start);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return role;
 	}
 }
