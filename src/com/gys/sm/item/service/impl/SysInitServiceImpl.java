@@ -16,10 +16,8 @@ public class SysInitServiceImpl implements ISysInitService{
 	@Autowired
 	private ISysDictionaryDao iSysDictionaryDao;
 	@Override
-	public Map<String, List<SysDictionaryBean>> getDictionaryList() {
-		List<SysDictionaryBean> list=iSysDictionaryDao.getDictionaryList();
-		
-		return ;
+	public List<SysDictionaryBean> getDictionaryList() throws Exception{
+		return iSysDictionaryDao.getDictionaryList();
 	}
 	
 }

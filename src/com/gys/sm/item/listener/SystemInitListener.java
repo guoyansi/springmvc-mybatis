@@ -1,12 +1,15 @@
 package com.gys.sm.item.listener;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+import com.gys.sm.item.bean.SysDictionaryBean;
+import com.gys.sm.item.cache.DictionaryCache;
 import com.gys.sm.item.service.ISysInitService;
 import com.gys.sm.item.service.impl.SysInitServiceImpl;
 
@@ -30,14 +33,8 @@ public class SystemInitListener implements ApplicationListener<ContextRefreshedE
         if(ev.getApplicationContext().getParent() == null){
             logger.info("=========正在缓存系统数据字典信息=========");
             try {
-            	
-            	List<> iSysInitService.getDictionaryList();
-            	
-                SysDictionaryService sysConfigService = (SysDictionaryService) ev.getApplicationContext().getBean("sysDictionaryServiceImpl");
-                List<SysDictionary> list = sysConfigService.getAllDictionary();
-                for(SysDictionary dict : list){
-                    DictionaryCache.put(dict);
-                }
+            	List<SysDictionaryBean> dictList=iSysInitService.getDictionaryList();
+            	DictionaryCache.putAll(dictList);
             } catch (Exception e) {
                 logger.error("缓存系统数据字典出现异常",e);
             }

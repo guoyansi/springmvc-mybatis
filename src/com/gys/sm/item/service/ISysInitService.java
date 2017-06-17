@@ -10,5 +10,5 @@ public interface ISysInitService {
 	 * 获取字典表
 	 * @return
 	 */
-	Map<String, List<SysDictionaryBean>> getDictionaryList();
+	List<SysDictionaryBean> getDictionaryList() throws Exception;
 }

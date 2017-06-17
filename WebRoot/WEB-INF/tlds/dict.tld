@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>out</shortname>
+	<uri>/gys/dict</uri>
+	<tag>
+		<name>dict</name>
+		<tagclass>com.gys.sm.item.tag.d.DictTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Returns a paginator</info>
+		 
+		<attribute>
+			<name>dictCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>dictValue</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+ 	<!-- <tag>
+		<name>select</name>
+		<tagclass>com.xdxx.ssm.tag.SelectDictTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Returns a paginator</info>
+		<attribute>
+			<name>dictCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>selected</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>className</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>idName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag> -->
+	
+	<tag>
+		<name>option</name>
+		<tagclass>com.gys.sm.item.tag.d.OptionDictTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Returns a paginator</info>
+		<attribute>
+			<name>dictCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>selected</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+</taglib>

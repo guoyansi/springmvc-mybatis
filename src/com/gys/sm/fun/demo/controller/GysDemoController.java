@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gys.sm.fun.demo.bean.GysBean;
 import com.gys.sm.fun.demo.service.IGysDemoService;
+import com.gys.sm.item.bean.SysDictionaryBean;
+import com.gys.sm.item.cache.DictionaryCache;
 import com.gys.sm.item.constant.ReturnRes;
 
 @Controller
@@ -35,6 +37,8 @@ public class GysDemoController {
 			GysBean gys=iGysDemoService.getRoleById(id);
 			view.addObject("bean",gys);
 			view.setViewName("gysDemo/demo");
+			List<SysDictionaryBean> beans=DictionaryCache.getDictList("1001");
+			view.addObject("dictList",beans);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

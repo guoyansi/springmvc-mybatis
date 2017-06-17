@@ -16,25 +16,13 @@ import com.gys.sm.item.bean.SysDictionaryBean;
  */
 public class DictionaryCache {
 	private static Map<String, List<SysDictionaryBean>> map=new LinkedHashMap<String, List<SysDictionaryBean>>();
-	private static List<SysDictionaryBean> dictList=null;
 	/**
 	 * 添加缓存
 	 * @param bean
 	 */
 	public static void put(SysDictionaryBean bean) throws Exception{
-		//map.put(bean.getDict_code(), bean);
 		if(map.containsKey(bean.getDict_code())){
-			List<SysDictionaryBean> list=map.get(bean.getDict_code());
-			boolean b=false;
-			for(SysDictionaryBean d:list){
-				if(d.getDict_code().equals(bean.getDict_code())){
-					b=true;
-					break;
-				}
-			}
-			if(!b){
-				list.add(bean);
-			}
+			map.get(bean.getDict_code()).add(bean);
 		}else{
 			List<SysDictionaryBean> list=new ArrayList<SysDictionaryBean>();
 			list.add(bean);
@@ -46,16 +34,46 @@ public class DictionaryCache {
 	 * @param bean
 	 */
 	public static void putAll(List<SysDictionaryBean> list) throws Exception{
-		dictList=(list==null?new ArrayList<SysDictionaryBean>():list);
+		if(list==null){
+			list=new ArrayList<SysDictionaryBean>();
+		}
 		for(SysDictionaryBean d:list){
 			put(d);
 		}
 	}
+	/**
+	 * 获取字典表中的dict_name
+	 * @param code
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
 	public static String getName(String code,String value) throws Exception{
-		 Iterator<Map.Entry<String, List<SysDictionaryBean>>> it = map.entrySet().iterator();
+		  Iterator<Map.Entry<String, List<SysDictionaryBean>>> it = map.entrySet().iterator();
 		  while (it.hasNext()) {
-		   Map.Entry<String, List<SysDictionaryBean>> entry = it.next();
-		   if()
+			  Map.Entry<String, List<SysDictionaryBean>> entry = it.next();
+			  if(entry.getKey().equals(code)){
+				   List<SysDictionaryBean> beans=entry.getValue();
+				   for(SysDictionaryBean b:beans){
+					   if(b.getDict_value().equals(value)){
+						   return b.getDict_name();
+					   }
+				   }
+			  }
 		  }
+		  return null;
+	}
+	/**
+	 * 获取同一code的字典list
+	 * @param code
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<SysDictionaryBean> getDictList(String code) throws Exception{
+		if(map.containsKey(code)){
+			return map.get(code);
+		}else{
+			return new ArrayList<SysDictionaryBean>();
+		}
 	}
 }
