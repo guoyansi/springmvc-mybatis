@@ -12,6 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>角色</title>
+    <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
    <link rel="stylesheet" type="text/css" href="<%=path %>/resource/css/gys.css">
   </head>
   
@@ -24,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </select>
     <hr />
     <select>
-    	<d:option dictCode="1001" selected="3"></d:option>
+    	<d:option dictCode="1001" selected="2"></d:option>
     </select>
     <div>code:1001;value=1 ;性别:<d:dict dictCode="1001" dictValue="3"></d:dict></div>
    <ul>

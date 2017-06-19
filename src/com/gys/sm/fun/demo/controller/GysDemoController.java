@@ -29,7 +29,7 @@ public class GysDemoController {
 			GysBean bean=new GysBean();
 			bean.setRoleName("roleName12");
 			bean.setNote("Note3423");
-			int i=iGysDemoService.insertRole(bean);
+			//int i=iGysDemoService.insertRole(bean);
 			//System.out.println("影响行数:>>>>>>>>>>>"+i);
 			List<GysBean> list=iGysDemoService.getRole();
 			view.addObject("list",list);

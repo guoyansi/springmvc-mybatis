@@ -7,7 +7,6 @@
 		this.param=param;		
 	}
 	
-	
 	/**
 	* 当填写参数h后,解析你给的参数,如果为空自动从获取浏览器的地址
 	* 测试路径:>>>http://127.0.0.1:8020/url/index.html?id=1.2&gys=7777777777777777777777777&name=思思博士#api/126
@@ -174,9 +173,11 @@
      * 	bg.upload({
 			url:"",//上传路径
 			name:"",//file name值
+			ext:["png"],//扩展名
+			extIngoreCase:true,//忽略扩展名大小写
+			multiple:false,//批量上传
 			start:function(){},
 			end:function(){},
-			ext:["png"],//扩展名
 			extCallback:function(data){//不允许上传文件时,执行函数
 				console.log(data);
 			},
@@ -191,10 +192,10 @@
      * 注意:后台只能返回字符串
      * 如果java中 这样返回(@ResponseBody Map<string,obj>)  会有低版本IE内核的浏览器(360安全模式,猎豹)出现无法接收返回值因而出现异常的原因.
      * 
-     * 后台
+     * 后台(单个上传)
      * @RequestMapping(value = "/uploadM1", method = RequestMethod.POST)
 		@ResponseBody
-		public String doUploadFile1(@RequestParam("file") MultipartFile file)
+		public String doUploadFile1(@RequestParam("file") CommonsMultipartFile file)
 				throws IOException {
 			if (!file.isEmpty()) {
 				System.out.println("提示:" + file.getOriginalFilename());
@@ -203,10 +204,30 @@
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("status", 1);
 			map.put("msg", "success");
+			//返回字符串,返回map会有低版本的ie兼容问题
 			return JSONObject.fromObject(map).toString();
 		}
      * 
-     * 
+     * 后台(批量上传)
+     * @RequestMapping(value = "/uploadM2", method = RequestMethod.POST)
+		@ResponseBody
+		public String doUploadFile1(@RequestParam("files") CommonsMultipartFile[] files)
+				throws IOException {
+					List<Map<String,String>> list=new arrayList<Map<String,String>>();
+					for(var i=0;i<files.length;i++){
+						System.out.println("提示:" + file.getOriginalFilename());
+						FileUtils.copyInputStreamToFile(file.getInputStream(),new File("d:\\upload\\", System.currentTimeMillis()+ file.getOriginalFilename()));
+						Map<String, String> m = new HashMap<String, String>();
+						m.put("url","d:\upload\123456gys.mp3");
+						list.add(m);
+					}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("status", 1);
+			map.put("msg", "success");
+			map.put("list", list);
+			//返回字符串,返回map会有低版本的ie兼容问题
+			return JSONObject.fromObject(map).toString();
+		}
      * 
      */
 	Bridge.upload=function(opts){
@@ -362,11 +383,38 @@
 				abort: function() {}
 			};
 		};
+		/**
+		 * 检查扩展名
+		 * @param {Object} path
+		 * @param {Object} ext
+		 * @param {Object} extIngoreCase
+		 */
+		var checkExtName=function(path,ext,extIngoreCase){
+			var isAllow=false;
+			var lastPoint = path.lastIndexOf(".");
+			var extName = path.substr(lastPoint + 1);
+			for(var i = 0; i < ext.length; i++) {
+				if(extIngoreCase){
+					if(ext[i].toLowerCase() == extName.toLowerCase()) {
+						isAllow = true;
+						break;
+					}
+				}else{
+					if(opts.ext[i]== extName) {
+						isAllow = true;
+						break;
+					}
+				}
+			}
+			return isAllow;
+		};
 		//参数默认值
 		var defaults = {
 			url: "",
 			name: "file",
 			ext: [], //jpg,gif,mp3
+			extIngoreCase:true,//忽略扩展名大小写
+			multiple:false,
 			start:function(){
 				
 			},
@@ -389,21 +437,31 @@
 		}*/
 		//opts.obj.click(function(){
 			var fileID = "fileId" + (new Date()).getTime();
-			var objFile = $("<input id='" + fileID + "' type='file' name='" + opts.name + "' style='display:none;' />");
+			var m ="";
+			if(opts.multiple){
+				m="multiple='multiple'";
+			}
+			var objFile=$("<input id='" + fileID + "' type='file' name='" + opts.name + "' style='display:none;' "+m+" />");
 			objFile.appendTo("body");
 			objFile.trigger("click");
 			objFile.change(function() {
-				var path = $(this).val();
-				var lastPoint = path.lastIndexOf(".");
-				var extName = path.substr(lastPoint + 1);
 				var isAllow = false;
 				if(opts.ext.length==0){
 					isAllow=true;
-				}
-				for(var i = 0; i < opts.ext.length; i++) {
-					if(opts.ext[i] == extName) {
-						isAllow = true;
-						break;
+				}else{
+					if(opts.multiple){
+						var files=objFile.get(0).files;
+						if(!files.length){
+							return;
+						}
+						for(var i=0;i<files.length;i++){
+							isAllow=checkExtName(files[i].name,opts.ext,opts.extIngoreCase);
+							if(!isAllow){
+								break;
+							}
+						}
+					}else{
+						isAllow=checkExtName($(this).val(),opts.ext,opts.extIngoreCase);
 					}
 				}
 				if(!isAllow) {
@@ -916,6 +974,8 @@ Bridge.tmp=function(str,data,debug){
 }
 /**
  * var html=bg("#scriptTmp").tmp(data,debug);
+ * @param {Object} data
+ * @param {Object} debug
  */
 OtherBridge.prototype.tmp=function(data,debug){
 	var s=tmpEngine($(this.param).html(),data);
@@ -926,7 +986,7 @@ OtherBridge.prototype.tmp=function(data,debug){
 	return htmlEngine(s,data,debug);
 };	
 	
-window.bg=Bridge;
+	window.bg=Bridge;
 })();
 
 
