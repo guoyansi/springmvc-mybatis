@@ -21,11 +21,19 @@
         http://www.springframework.org/schema/task/spring-task-3.1.xsd">
      
      <!-- 默认的注解映射支持 -->
-	<mvc:annotation-driven />
-	<!-- 自动扫描的包 -->
-	<!-- <context:component-scan base-package="com">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" /> 
-	</context:component-scan> -->
+	<mvc:annotation-driven>
+		<!-- @ResponseBody String时 使用utf-8 -->
+		<mvc:message-converters register-defaults="true">
+		    <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		      <property name="supportedMediaTypes">
+		      	<list>
+                      <value>text/plain;charset=UTF-8</value>
+                      <value>text/html;charset=UTF-8</value>
+                 </list>
+		      </property>
+		    </bean>
+   		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<!-- 给service层添加事务处理增强 -->
 	<context:component-scan base-package="com.gys.sm">
@@ -45,5 +53,17 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 上传配置 
+		不配置会出现错误:net::ERR_CONNECTION_RESET 
+	-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <!-- 上传的最大限制 -->
+	    <property name="maxUploadSize" value="209715200" />
+	    <!-- 默认编码 -->
+	    <property name="defaultEncoding" value="UTF-8" />
+	    <!-- 上传文件的解析 -->
+	    <property name="resolveLazily" value="true" />
 	</bean>
 </beans>

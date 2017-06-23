@@ -5,8 +5,10 @@ public class BaseBean {
 	//数据起始索引
 	private Integer index=0;
 	//数据起始索引(根据pageSize和currentPage计算得来)
+	@SuppressWarnings("unused")
 	private Integer pageStart;
 	//结束索引
+	@SuppressWarnings("unused")
 	private Integer pageEnd;
 	//当前页
 	private Integer currentPage=1;

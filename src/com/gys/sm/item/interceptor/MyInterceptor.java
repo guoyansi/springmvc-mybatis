@@ -15,6 +15,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
     	//System.out.println("经过拦截器....");
         String url = request.getRequestURI();
+        System.out.println("请求路径"+url);
         boolean session=true;
         if(session){//session未失效
         	

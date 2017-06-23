@@ -108,6 +108,8 @@ public class HttpClientUtils {
 		 */
 		JSONObject res1=httpPost("http://192.168.6.234:8080/sm/httpClient/post.do", JSONObject.fromObject(map));
 		JSONObject res2=httpGet("http://192.168.6.234:8080/sm/httpClient/get.do?name=gys&age=26");
+		System.out.println(res1.toString());
+		System.out.println(res2.toString());
 	}
     
     

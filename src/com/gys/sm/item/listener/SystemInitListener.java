@@ -1,7 +1,6 @@
 package com.gys.sm.item.listener;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import com.gys.sm.item.bean.SysDictionaryBean;
 import com.gys.sm.item.cache.DictionaryCache;
 import com.gys.sm.item.service.ISysInitService;
-import com.gys.sm.item.service.impl.SysInitServiceImpl;
 
 
 /**

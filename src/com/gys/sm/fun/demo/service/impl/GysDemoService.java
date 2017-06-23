@@ -18,7 +18,7 @@ public class GysDemoService implements IGysDemoService{
 	@Override
 	public int insertRole(GysBean role) throws Exception {
 		int num= IGysDemoDao.insertRole(role);
-		int c=0;
+		//int c=0;
 		//int a=num/c;
 		//iGysDao.deleteRole(role.getId());
 		//num= iGysDao.insertRole(role);

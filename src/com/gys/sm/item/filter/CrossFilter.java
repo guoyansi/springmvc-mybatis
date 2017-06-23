@@ -30,6 +30,7 @@ public class CrossFilter implements Filter{
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Headers","content-type");
 		doChain.doFilter(req,res);
+		System.out.println("开启跨域....");
 	}
 
 	@Override
