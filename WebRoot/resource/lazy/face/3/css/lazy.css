@@ -1,10 +1,10 @@
 body{
 	font-family: "微软雅黑";
 	font-size: 12px;
-	overflow-x: hidden;
 }
 /*******组件样式**********/
-.ui-btn{
+.ui-btn,
+.ui-btn-disable{
 	border:none;
 	font-size: 14px;
 	color: white;
@@ -16,10 +16,9 @@ body{
 	text-decoration: none;
 	outline:medium;
 	border-radius: 3px;
-	cursor: pointer;
 }
-.ui-btn-disable{
-	cursor: default;
+.ui-btn{
+	cursor: pointer;
 }
 .ui-btn:hover{
 	background-color: #918f8f;
@@ -229,12 +228,11 @@ body{
 	z-index: 1;
 	position: absolute;
 	left: 220px;
-	right: 0;
+	right: 20px;
 	top: 50px;
 	padding-top: 20px;
-	overflow: auto;
-	/*min-width: 1000px;*/
-	bottom: 0;
+	overflow: hidden;
+	min-width: 1000px;
 }
 
 .ui-nav{
@@ -336,6 +334,7 @@ body{
 .ui-table-center{
 	text-align: center;
 }
+
 .ui-table-right{
 	text-align: right;
 }
