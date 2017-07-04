@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.gys.sm.fun.demo.bean.GysBean;
 import com.gys.sm.fun.demo.dao.IGysDemoDao;
+import com.gys.sm.fun.demo.dao.IGysDemoDao1;
 import com.gys.sm.fun.demo.service.IGysDemoService;
 
 @Service
 public class GysDemoService implements IGysDemoService{
 	@Autowired
 	private IGysDemoDao IGysDemoDao;
+	@Autowired
+	private IGysDemoDao1 iGysDemoDao1;
 	
 	//@Transactional(propagation=Propagation.REQUIRED)
 	@Override
@@ -40,7 +43,8 @@ public class GysDemoService implements IGysDemoService{
 	//@Transactional(propagation=Propagation.SUPPORTS)
 	@Override
 	public List<GysBean> getRole() throws Exception{
-		return IGysDemoDao.getRole();
+		//return IGysDemoDao.getRole();
+		return iGysDemoDao1.getRole();
 	}
 	//@Transactional(propagation=Propagation.SUPPORTS)
 	@Override
