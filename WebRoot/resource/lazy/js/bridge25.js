@@ -202,9 +202,14 @@
 		@ResponseBody
 		public String doUploadFile1(@RequestParam("file") CommonsMultipartFile file)
 				throws IOException {
+			String curProjectPath=request.getServletContext().getRealPath("/upload");
+			File saveFile=new File(curProjectPath);
+			if(!saveFile.exists()&&!saveFile.isDirectory()){
+				saveFile.mkdir();
+			}
 			if (!file.isEmpty()) {
 				System.out.println("提示:" + file.getOriginalFilename());
-				FileUtils.copyInputStreamToFile(file.getInputStream(),new File("d:\\upload\\", System.currentTimeMillis()+ file.getOriginalFilename()));
+				FileUtils.copyInputStreamToFile(file.getInputStream(),new File(curProjectPath, System.currentTimeMillis()+ file.getOriginalFilename()));
 			}
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("status", 1);
@@ -226,14 +231,14 @@
 					String oldFileName=file.getOriginalFilename();
 					System.out.println("文件名:" + oldFileName);
 					//String dex = oldFileName.substring(oldFileName.lastIndexOf(".")).toLowerCase();
-					//String curProjectPath=request.getServletContext().getRealPath("/");
-					String saveDirectoryPath = request.getContextPath() + "/upload/";
-					File saveFile=new File(saveDirectoryPath);
+					String curProjectPath=request.getServletContext().getRealPath("/upload");
+					//String saveDirectoryPath = request.getContextPath() + "/upload/";
+					File saveFile=new File(curProjectPath);
 					if(!saveFile.exists()&&!saveFile.isDirectory()){
 						saveFile.mkdir();
 					}
 					//String newFileName=UUID.randomUUID()+dex;
-					File pathFile=new File(saveDirectoryPath, oldFileName);
+					File pathFile=new File(curProjectPath, oldFileName);
 					FileUtils.copyInputStreamToFile(file.getInputStream(),pathFile);
 					String newPath=saveDirectoryPath+oldFileName;
 					list.add(newPath);

@@ -11,8 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CrossFilter implements Filter{
+import org.apache.log4j.Logger;
 
+public class CrossFilter implements Filter{
+	private static Logger logger = Logger.getLogger(CrossFilter.class);
 	@Override
 	public void destroy() {
 		
@@ -30,7 +32,7 @@ public class CrossFilter implements Filter{
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Headers","content-type");
 		doChain.doFilter(req,res);
-		System.out.println("开启跨域....");
+		logger.info("开启跨域....");
 	}
 
 	@Override

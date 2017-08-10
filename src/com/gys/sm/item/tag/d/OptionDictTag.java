@@ -16,8 +16,8 @@ public class OptionDictTag extends BodyTagSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected String dictCode;    
-    protected String selected;
+	private String dictCode;    
+	private String selected;
     
     public String getDictCode() {
 		return dictCode;

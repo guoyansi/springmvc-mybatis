@@ -22,38 +22,6 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
- 	<!-- <tag>
-		<name>select</name>
-		<tagclass>com.xdxx.ssm.tag.SelectDictTag</tagclass>
-		<bodycontent>JSP</bodycontent>
-		<info>Returns a paginator</info>
-		<attribute>
-			<name>dictCode</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>name</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>selected</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>className</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>idName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag> -->
-	
 	<tag>
 		<name>option</name>
 		<tagclass>com.gys.sm.item.tag.d.OptionDictTag</tagclass>
@@ -69,6 +37,10 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>checkbox</name>
+		<tagclass>com.gys.sm.item.tag.d.CheckBoxTag</tagclass>
 	</tag>
 	
 </taglib>
