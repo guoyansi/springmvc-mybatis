@@ -57,6 +57,8 @@ public class Tool {
 		out.close();
 		System.out.println(url+"生成成功");
 	}
+	
+	
 	public static void main(String[] args) throws Exception{
 		Tool tool=new Tool();
 		//生成properties

@@ -13,11 +13,7 @@ import com.gys.sm.item.service.ISysInitService;
 
 
 /**
- * 〈SystemListener.java〉
  * 〈系统初始化监听器,Spring容器启动完成立即加载系统初始化信息到静态缓存中〉
- * @author    yma
- * @version   V1.00 2015年11月21日[版本号, YYYY年MM月DD日]
- * @see       [相关类/方法]
  */
 public class SystemInitListener implements ApplicationListener<ContextRefreshedEvent> {
     

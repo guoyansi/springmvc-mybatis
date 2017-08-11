@@ -29,16 +29,23 @@
   	<param-value>classpath:applicationContext.xml</param-value>
   </context-param>
   <!-- 导入spring配置文件 end -->
-  
-  <!-- 启动Web容器时，自动装配ApplicationContext.xml的配置信息 -->
+   <!-- 启动Web容器时执行系统监听器，并且自动装配ApplicationContext.xml的配置信息 -->
   <listener>
+		<listener-class>com.gys.sm.item.listener.MyContextLoaderListener</listener-class>
+  </listener>
+  
+ 
+ <!--  <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>  
+  </listener>   -->
   
 <!--  <context-param>
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>classpath:log4j.properties</param-value>
 	</context-param> -->
+	
+	
+	
   <!-- 导入spring-mvc配置文件 start -->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>

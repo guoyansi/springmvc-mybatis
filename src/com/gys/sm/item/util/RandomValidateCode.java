@@ -10,7 +10,11 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * 验证码的生成
+ * @author gys
+ *
+ */
 public class RandomValidateCode {
 
     //public static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";//放到session中的key
