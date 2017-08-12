@@ -8,14 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
 public class MyInterceptor extends HandlerInterceptorAdapter {
+	private static Logger logger=Logger.getLogger(MyInterceptor.class);
+	
     public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
     	//System.out.println("经过拦截器....");
         String url = request.getRequestURI();
-        System.out.println("请求路径"+url);
+        logger.info("请求路径:>>>>"+url);
         boolean session=true;
         if(session){//session未失效
         	
