@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gys.sm.fun.demo.bean.GysBean;
 import com.gys.sm.fun.demo.service.IGysDemoService;
+import com.gys.sm.fun.demo.service.impl.GysServiceImpl;
 import com.gys.sm.item.bean.SysDictionaryBean;
 import com.gys.sm.item.cache.DictionaryCache;
 import com.gys.sm.item.constant.ReturnRes;
@@ -39,6 +40,8 @@ public class GysDemoController {
 	
 	@Autowired
 	private IGysDemoService iGysDemoService;
+	@Autowired
+	private GysServiceImpl si;
 	
 	@RequestMapping("/page")
 	public ModelAndView goPage(ModelAndView view,HttpServletRequest request){
@@ -190,4 +193,11 @@ public class GysDemoController {
 		System.out.println(res);
 		return res;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/getStr")
+	public List<String> test(){
+		return si.getStrList();
+	}
+	
 }
