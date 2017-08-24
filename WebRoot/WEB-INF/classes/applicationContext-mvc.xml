@@ -20,7 +20,12 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.1.xsd">
      
-     <!-- 默认的注解映射支持 -->
+     <!-- 
+     	1.开启springmvc的注解模式
+     	2.简化配置:
+     		(1)自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
+     		(2)提供一系列:数据绑定,数字和日期的format  @NumberFormat,@dataTimeFormat,xml,json默认读写支持
+      -->
 	<mvc:annotation-driven>
 		<!-- @ResponseBody String时 使用utf-8 -->
 		<mvc:message-converters register-defaults="true">

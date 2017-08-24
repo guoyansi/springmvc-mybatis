@@ -56,4 +56,10 @@ public class GysDemoService implements IGysDemoService{
 	public List<GysBean> findRoles(String roleName) throws Exception{
 		return IGysDemoDao.findRoles(roleName);
 	}
+	@Override
+	public List<GysBean> findRoleByMultParam(int id, String roleName)
+			throws Exception {
+		return IGysDemoDao.findRoleByMultParam(id, roleName);
+	}
+	
 }

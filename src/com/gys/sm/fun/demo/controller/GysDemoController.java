@@ -44,7 +44,7 @@ public class GysDemoController {
 	private GysServiceImpl si;
 	
 	@RequestMapping("/page")
-	public ModelAndView goPage(ModelAndView view,HttpServletRequest request){
+	public ModelAndView goPage(ModelAndView view,HttpServletRequest request,String html){
 		
 		String curProjectPath=request.getServletContext().getRealPath("/upload");
 		System.out.println("curProjectPath:"+curProjectPath);
@@ -58,12 +58,19 @@ public class GysDemoController {
 			//System.out.println("影响行数:>>>>>>>>>>>"+i);
 			List<GysBean> list=iGysDemoService.getRole();
 			view.addObject("list",list);
-			int id=Integer.parseInt(request.getParameter("id"));
+			String ids=request.getParameter("id");
+			int id=0;
+			if(ids==null){
+				id=2;
+			}else{
+				id=Integer.parseInt(ids);
+			}
 			GysBean gys=iGysDemoService.getRoleById(id);
 			view.addObject("bean",gys);
 			view.setViewName("gysDemo/demo");
 			List<SysDictionaryBean> beans=DictionaryCache.getDictList("1001");
 			view.addObject("dictList",beans);
+			view.addObject("htmlTag",html);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -198,6 +205,18 @@ public class GysDemoController {
 	@RequestMapping("/getStr")
 	public List<String> test(){
 		return si.getStrList();
+	}
+	
+	@ResponseBody
+	@RequestMapping("/findRoleByMultParam")
+	public List<GysBean> findRoleByMultParam(Integer id,String roleName){
+		List<GysBean> list=null;
+		try {
+			list=iGysDemoService.findRoleByMultParam(id, roleName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 }

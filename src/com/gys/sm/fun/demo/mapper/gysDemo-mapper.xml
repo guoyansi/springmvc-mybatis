@@ -30,4 +30,10 @@
   	</set>
   	where id=#{id}
   </update>
+  <!-- 接口多参数实例 -->
+ <select id="findRoleByMultParam" resultType="com.gys.sm.fun.demo.bean.GysBean">
+  		select id,roleName,note from gys where id=#{id} and roleName like concat('%',#{roleName},'%');
+  </select>
+  
+  
 </mapper>

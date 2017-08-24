@@ -12,6 +12,13 @@
   </head>
   
   <body>
+  <form action="">
+  	<h1>html注入</h1>
+  	<input type="text" name="html" value="${htmlTag }" />
+  	<input type="submit">
+  </form>
+  
+  
    <h1>列表</h1>
     <select>
     	<c:forEach items="${dictList }" var="item">

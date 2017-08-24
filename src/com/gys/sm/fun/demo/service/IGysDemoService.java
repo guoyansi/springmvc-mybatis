@@ -12,4 +12,5 @@ public interface IGysDemoService {
 	GysBean getRoleById(Integer id) throws Exception;
 	List<GysBean> getRole() throws Exception;
 	List<GysBean> findRoles(String roleName) throws Exception;
+	List<GysBean> findRoleByMultParam(int id,String roleName) throws Exception;
 }

@@ -1,6 +1,5 @@
 package com.gys.sm.fun.demo.bean;
 
-
 public class GysBean {
 	private Integer id;
 	private String roleName;
