@@ -35,5 +35,39 @@
   		select id,roleName,note from gys where id=#{id} and roleName like concat('%',#{roleName},'%');
   </select>
   
+  <!-- association嵌套结果 -->
+  <resultMap type="com.gys.sm.fun.demo.bean.Student" id="studentMap">
+  	<id column="stu_id" property="stu_id" />
+  	<result column="stu_name" property="stu_name"/>
+  	<result column="age" property="age"/>
+  	
+  	<!-- 这里的column是student表中的外键 -->
+  	<association property="grade" column="gd" javaType="com.gys.sm.fun.demo.bean.Grade">
+  		<id property="grade_idd" column="grade_idd"/>
+  		<result property="grade_name" column="grade_name"/>
+  	</association>
+  </resultMap>
+  
+  <select id="getStudentList" resultMap="studentMap">
+  	select * from student s,
+  	grade g where s.gd=g.grade_idd
+  </select>
+  
+  <!-- association查询 -->
+  <resultMap type="com.gys.sm.fun.demo.bean.Student" id="studentMap1">
+  	<id column="stu_id" property="stu_id" />
+  	<result column="stu_name" property="stu_name"/>
+  	<result column="age" property="age"/>
+  	<!-- 这里的columnstudent表中的外键 -->
+  	<association property="grade" column="gd" javaType="com.gys.sm.fun.demo.bean.Grade" select="getGradeList" />
+  </resultMap>
+  
+  
+  <select id="getStudentList1" resultMap="studentMap1">
+  	select * from student
+  </select>
+  <select id="getGradeList" parameterType="int" resultType="com.gys.sm.fun.demo.bean.Grade">
+  select * from grade where grade_idd=#{gd}
+  </select>
   
 </mapper>

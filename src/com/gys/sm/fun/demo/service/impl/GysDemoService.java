@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gys.sm.fun.demo.bean.GysBean;
+import com.gys.sm.fun.demo.bean.Student;
 import com.gys.sm.fun.demo.dao.IGysDemoDao;
 import com.gys.sm.fun.demo.dao.IGysDemoDao1;
 import com.gys.sm.fun.demo.service.IGysDemoService;
@@ -61,5 +62,14 @@ public class GysDemoService implements IGysDemoService{
 			throws Exception {
 		return IGysDemoDao.findRoleByMultParam(id, roleName);
 	}
+	@Override
+	public List<Student> getStudentList() throws Exception {
+		return IGysDemoDao.getStudentList();
+	}
+	@Override
+	public List<Student> getStudentList1() throws Exception {
+		return IGysDemoDao.getStudentList1();
+	}
+	
 	
 }

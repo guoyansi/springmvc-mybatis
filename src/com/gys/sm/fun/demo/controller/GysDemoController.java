@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.io.FileUtils;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gys.sm.fun.demo.bean.GysBean;
+import com.gys.sm.fun.demo.bean.Student;
 import com.gys.sm.fun.demo.service.IGysDemoService;
 import com.gys.sm.fun.demo.service.impl.GysServiceImpl;
 import com.gys.sm.item.bean.SysDictionaryBean;
@@ -218,5 +220,31 @@ public class GysDemoController {
 		}
 		return list;
 	}
+
+	@ResponseBody
+	@RequestMapping("/getstulist")
+	public List<Student> getstulist(){
+		List<Student> list=null;
+		try {
+			list=iGysDemoService.getStudentList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getstulist1")
+	public List<Student> getstulist1(){
+		List<Student> list=null;
+		try {
+			list=iGysDemoService.getStudentList1();
+			System.out.println(JSONArray.fromObject(list).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	
 }
