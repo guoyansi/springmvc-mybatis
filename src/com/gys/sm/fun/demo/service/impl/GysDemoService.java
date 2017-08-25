@@ -70,6 +70,10 @@ public class GysDemoService implements IGysDemoService{
 	public List<Student> getStudentList1() throws Exception {
 		return IGysDemoDao.getStudentList1();
 	}
+	@Override
+	public List<Student> getStudentList3() throws Exception {
+		return IGysDemoDao.getStudentList3();
+	}
 	
 	
 }

@@ -4,13 +4,14 @@ public class Student {
 	private Integer stu_id;
 	private String stu_name;
 	private Integer gd;
-	private int age;
+	private Integer age;
 	private Grade grade;
 	
-	public int getAge() {
+	
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public Integer getStu_id() {

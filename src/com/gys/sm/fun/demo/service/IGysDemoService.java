@@ -17,4 +17,5 @@ public interface IGysDemoService {
 	List<GysBean> findRoleByMultParam(int id,String roleName) throws Exception;
 	List<Student> getStudentList () throws Exception;
 	List<Student> getStudentList1 () throws Exception;
+	List<Student> getStudentList3 () throws Exception;
 }
