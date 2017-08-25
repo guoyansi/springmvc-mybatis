@@ -87,7 +87,7 @@
   	<result column="stu_name" property="stu_name"/>
   	<result column="age" property="age"/>
   	<!-- 这里的column student表中的外键 -->
-  	<association property="grade" column="gd" javaType="com.gys.sm.fun.demo.bean.Grade" resultMap="gradeMap"  />
+  	<association property="grade" column="gd" fetchType="lazy" javaType="com.gys.sm.fun.demo.bean.Grade" resultMap="gradeMap"  />
   </resultMap>
   <resultMap type="com.gys.sm.fun.demo.bean.Grade" id="gradeMap">
   	<id property="grade_idd" column="grade_idd"/>
