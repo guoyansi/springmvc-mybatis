@@ -34,4 +34,6 @@ public interface IGysDemoDao {
 	List<Student> getStudentList () throws Exception;
 	
 	List<Student> getStudentList1 () throws Exception;	
+	
+	List<Student> getStudentList2() throws Exception;
 }	

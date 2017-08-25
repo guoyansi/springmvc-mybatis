@@ -233,6 +233,8 @@ public class GysDemoController {
 		return list;
 	}
 	
+	
+	//TODO 执行不了
 	@ResponseBody
 	@RequestMapping("/getstulist1")
 	public List<Student> getstulist1(){
@@ -240,6 +242,18 @@ public class GysDemoController {
 		try {
 			list=iGysDemoService.getStudentList1();
 			System.out.println(JSONArray.fromObject(list).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getstulist2")
+	public List<Student> getstulist2(){
+		List<Student> list=null;
+		try {
+			list=iGysDemoService.getStudentList2();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

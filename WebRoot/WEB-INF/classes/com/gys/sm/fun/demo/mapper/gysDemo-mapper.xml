@@ -69,5 +69,17 @@
   <select id="getGradeList" parameterType="int" resultType="com.gys.sm.fun.demo.bean.Grade">
   select * from grade where grade_idd=#{gd}
   </select>
+
+
+<resultMap type="com.gys.sm.fun.demo.bean.Student" id="studentMap2">
+	<constructor>
+		<idArg column="stu_id" javaType="int"/>
+	</constructor>
+  </resultMap>
+
+<select id="getStudentList2" resultMap="studentMap2">
+  	select stu_id,stu_name,age from student
+  </select>
+
   
 </mapper>
