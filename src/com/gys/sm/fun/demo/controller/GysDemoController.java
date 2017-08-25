@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gys.sm.fun.demo.bean.GysBean;
 import com.gys.sm.fun.demo.bean.Student;
+import com.gys.sm.fun.demo.result.List3Result;
 import com.gys.sm.fun.demo.service.IGysDemoService;
 import com.gys.sm.fun.demo.service.impl.GysServiceImpl;
 import com.gys.sm.item.bean.SysDictionaryBean;
@@ -227,6 +229,8 @@ public class GysDemoController {
 		List<Student> list=null;
 		try {
 			list=iGysDemoService.getStudentList();
+			System.out.println("==========");
+			System.out.println(JSONArray.fromObject(list).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -241,6 +245,7 @@ public class GysDemoController {
 		List<Student> list=null;
 		try {
 			list=iGysDemoService.getStudentList1();
+			System.out.println("===========");
 			System.out.println(JSONArray.fromObject(list).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -260,5 +265,63 @@ public class GysDemoController {
 		return list;
 	}
 
+	@ResponseBody
+	@RequestMapping(value="/getstulist3")
+	public List<Student> getstulist3(){
+		List<Student> list=null;
+		try {
+			list=iGysDemoService.getStudentList3();
+			System.out.println(JSONArray.fromObject(list).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getstulist4")
+	public List3Result getstulist4(){
+		List3Result l3=null;
+		try {
+			List<Student> list=iGysDemoService.getStudentList3();
+			l3=new List3Result(1,"消息成功");
+			l3.setList(list);
+			System.out.println(JSONArray.fromObject(list).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			l3=new List3Result(1,"程序异常");
+		}
+		return l3;
+	}
+	
+	/**
+	 * forward和redirect区别
+	 * forward:可以将参数带到另一个页面,而redirect不可以
+	 * forward后路径不变,而redirect后路径会变化
+	 * 
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/redirectPage")
+	public String redirectPage(Model model){
+		return "gysDemo/redirect";
+	}
+	@RequestMapping("/forwardPage")
+	public String forwardPage(Model model){
+		return "gysDemo/forward";
+	}
+	
+	
+	@RequestMapping("/redirect")
+	public String redirect(Model model){
+		model.addAttribute("name", "gys");
+		return "redirect:/gysDemo/redirectPage";
+	}
+	@RequestMapping("/forward")
+	public String forward(Model model){
+		model.addAttribute("name", "gys");
+		return "forward:/gysDemo/forwardPage";
+	}
 	
 }

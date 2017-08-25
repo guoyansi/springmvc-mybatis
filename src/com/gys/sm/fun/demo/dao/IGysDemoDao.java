@@ -27,13 +27,24 @@ public interface IGysDemoDao {
 	 */
 	List<GysBean> findRoleByMultParam(@Param("id") int id,@Param("roleName") String roleName) throws Exception;
 	/**
-	 * 一对一
+	 * 一对一嵌套结果
 	 * @return
 	 * @throws Exception
 	 */
 	List<Student> getStudentList () throws Exception;
+	/**
+	 * 一对一嵌套查询
+	 * @return
+	 * @throws Exception
+	 */
+	List<Student> getStudentList1 () throws Exception;
 	
-	List<Student> getStudentList1 () throws Exception;	
 	
 	List<Student> getStudentList2() throws Exception;
+	/**
+	 * 一对一嵌套查询 
+	 * @return
+	 * @throws Exception
+	 */
+	List<Student> getStudentList3 () throws Exception;
 }	

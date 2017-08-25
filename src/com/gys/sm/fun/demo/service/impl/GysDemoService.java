@@ -73,6 +73,9 @@ public class GysDemoService implements IGysDemoService{
 	public List<Student> getStudentList2() throws Exception {
 		return IGysDemoDao.getStudentList2();
 	}
+	public List<Student> getStudentList3() throws Exception {
+		return IGysDemoDao.getStudentList3();
+	}
 	
 	
 }
