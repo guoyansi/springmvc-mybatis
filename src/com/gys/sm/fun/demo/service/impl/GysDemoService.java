@@ -38,7 +38,6 @@ public class GysDemoService implements IGysDemoService{
 	//@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public int deleteRole(GysBean role) throws Exception{
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	//@Transactional(propagation=Propagation.SUPPORTS)
@@ -71,6 +70,9 @@ public class GysDemoService implements IGysDemoService{
 		return IGysDemoDao.getStudentList1();
 	}
 	@Override
+	public List<Student> getStudentList2() throws Exception {
+		return IGysDemoDao.getStudentList2();
+	}
 	public List<Student> getStudentList3() throws Exception {
 		return IGysDemoDao.getStudentList3();
 	}

@@ -69,13 +69,25 @@
   <select id="getGradeList" parameterType="int" resultType="com.gys.sm.fun.demo.bean.Grade">
   select * from grade where grade_idd=#{gd}
   </select>
+
+
+<resultMap type="com.gys.sm.fun.demo.bean.Student" id="studentMap2">
+	<constructor>
+		<idArg column="stu_id" javaType="int"/>
+	</constructor>
+  </resultMap>
+
+<select id="getStudentList2" resultMap="studentMap2">
+  	select stu_id,stu_name,age from student
+  </select>
+
   
    <resultMap type="com.gys.sm.fun.demo.bean.Student" id="studentMap3">
   	<id column="stu_id" property="stu_id" />
   	<result column="stu_name" property="stu_name"/>
   	<result column="age" property="age"/>
   	<!-- 这里的column student表中的外键 -->
-  	<association property="grade" column="gd" javaType="com.gys.sm.fun.demo.bean.Grade" resultMap="gradeMap"  />
+  	<association property="grade" column="gd" fetchType="lazy" javaType="com.gys.sm.fun.demo.bean.Grade" resultMap="gradeMap"  />
   </resultMap>
   <resultMap type="com.gys.sm.fun.demo.bean.Grade" id="gradeMap">
   	<id property="grade_idd" column="grade_idd"/>
@@ -85,7 +97,6 @@
   	select * from student s,
   	grade g where s.gd=g.grade_idd
   </select>
-  
   
   <!-- 多表删除 -->
   <!-- <delete id="">
@@ -97,4 +108,5 @@
 		AND t.holiday_id=#{holiday_id}
   </delete> -->
   
+</mapper>
 </mapper>

@@ -39,6 +39,8 @@ public interface IGysDemoDao {
 	 */
 	List<Student> getStudentList1 () throws Exception;
 	
+	
+	List<Student> getStudentList2() throws Exception;
 	/**
 	 * 一对一嵌套查询 
 	 * @return

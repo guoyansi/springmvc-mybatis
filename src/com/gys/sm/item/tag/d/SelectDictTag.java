@@ -22,7 +22,6 @@ public class SelectDictTag extends BodyTagSupport{
     		sb.append(DictionaryCache.getSelectStr(dictCode, name, selected,className,idName));
 			this.pageContext.getOut().write(sb.toString());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	return SKIP_BODY;
