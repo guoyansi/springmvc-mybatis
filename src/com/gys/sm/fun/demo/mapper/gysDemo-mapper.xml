@@ -86,4 +86,15 @@
   	grade g where s.gd=g.grade_idd
   </select>
   
+  
+  <!-- 多表删除 -->
+  <!-- <delete id="">
+  	DELETE t,s FROM 
+		technology_holiday t,
+		technology_holiday_step s
+	WHERE
+		t.holiday_id=s.holiday_id
+		AND t.holiday_id=#{holiday_id}
+  </delete> -->
+  
 </mapper>
