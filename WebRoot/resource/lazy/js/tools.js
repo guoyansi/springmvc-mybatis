@@ -7,14 +7,19 @@ bg.ajax=function(opts){
 	var d={
 		load:true,//加载动画
 		loadText:"",
-		contentType:'application/json',
+		done:true,
+		fail:true,
+		always:true,
+		//contentType:"application/json",
 		data:{},
+		success:function(data,textStatus,jqXHR){},
+		error:function(jqXHR,textStatus,errorThrown){},
 		type:"post",
 		dataType:"json",
 		async:true
 	};
 	opts = $.extend({}, d, opts);
-	opts.data=JSON.stringify(opts.data);
+	//opts.data=JSON.stringify(opts.data);
 	if(opts.load){
 		$.ui_load({
 			icon:1,
@@ -23,9 +28,13 @@ bg.ajax=function(opts){
 	}
 	var success=opts.success;
 	opts.success=function(){};
-	$.ajax(opts).done(function(data){
+	$.ajax(opts).done(function(data,textStatus,jqXHR){
+		if(!opts.done){
+			success(data);
+			return;
+		}
 		//ajax请求时 session失效
-		if(data.status&&data.status==3){
+		if(data.status==3){
 			$.ui_dialog({
 				type:"e",
 				con:data.msg,
@@ -36,12 +45,19 @@ bg.ajax=function(opts){
 		}else{
 			success(data);
 		}
-	}).fail(function(){
+	}).fail(function(jqXHR, textStatus, errorThrown){
+		if(!opts.fail){
+			opts.error(jqXHR,textStatus,errorThrown);
+			return;
+		}
 		$.ui_dialog({
 			type:"e",
 			con:"连接服务器失败！",
 		});
 	}).always(function(){
+		if(!opts.always){
+			return;
+		}
 		if(opts.load){
 			$.ui_load_close();
 		}
