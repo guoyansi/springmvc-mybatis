@@ -1,6 +1,7 @@
 package com.gys.sm.fun.demo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.gys.sm.fun.demo.bean.Grade;
 import com.gys.sm.fun.demo.bean.GysBean;
@@ -19,4 +20,6 @@ public interface IGysDemoService {
 	List<Student> getStudentList1 () throws Exception;
 	List<Student> getStudentList2() throws Exception;
 	List<Student> getStudentList3 () throws Exception;
+	
+	Map<String, Object> insertTestTranstationAndException() throws Exception;
 }

@@ -108,5 +108,11 @@
 		AND t.holiday_id=#{holiday_id}
   </delete> -->
   
-</mapper>
+  <!-- 
+  	时间转换成秒 
+  	select time_to_sec('00:01:05')  ====>65
+  	秒到时间    00:02:1
+  	select sec_to_time(121)  ==>00:02:1
+   -->
+  
 </mapper>

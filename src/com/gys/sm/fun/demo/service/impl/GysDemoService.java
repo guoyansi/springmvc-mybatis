@@ -1,15 +1,19 @@
 package com.gys.sm.fun.demo.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gys.sm.fun.demo.bean.GysBean;
 import com.gys.sm.fun.demo.bean.Student;
 import com.gys.sm.fun.demo.dao.IGysDemoDao;
 import com.gys.sm.fun.demo.dao.IGysDemoDao1;
 import com.gys.sm.fun.demo.service.IGysDemoService;
+import com.gys.sm.item.ex.MyException;
 
 @Service
 public class GysDemoService implements IGysDemoService{
@@ -75,6 +79,26 @@ public class GysDemoService implements IGysDemoService{
 	}
 	public List<Student> getStudentList3() throws Exception {
 		return IGysDemoDao.getStudentList3();
+	}
+	//@Transactional
+	@Override
+	public Map<String, Object> insertTestTranstationAndException() throws Exception {
+		Map<String, Object> map=new HashMap<String, Object>();
+		GysBean bean =new GysBean();
+		bean.setNote("qqqq");
+		bean.setRoleName("ggggg");
+		int i=IGysDemoDao.insertRole(bean);
+		//i=0;
+		//System.out.println(5/i);
+		if(i==0){
+			throw new MyException("第1步插入失败");
+			//map.put("msg", "第一步插入失败"+System.currentTimeMillis());
+			//return map;
+		}
+		IGysDemoDao.insertRole(bean);
+		map.put("status", 1);
+		map.put("msg", "插入成功");
+		return map;
 	}
 	
 	

@@ -33,6 +33,7 @@ import com.gys.sm.fun.demo.service.impl.GysServiceImpl;
 import com.gys.sm.item.bean.SysDictionaryBean;
 import com.gys.sm.item.cache.DictionaryCache;
 import com.gys.sm.item.constant.ReturnRes;
+import com.gys.sm.item.ex.MyException;
 
 @Controller
 @RequestMapping("/gysDemo")
@@ -322,6 +323,33 @@ public class GysDemoController {
 	public String forward(Model model){
 		model.addAttribute("name", "gys");
 		return "forward:/gysDemo/forwardPage";
+	}
+	
+	/**
+	 * 测试事务和异常的关系
+	 * 第一步插入数据返回数据理论上是1
+	 * 第二部判断插入数据是否是1
+	 * 如果是1继续执行,否则终止执行,返回map
+	 * 第三部继续插入数据
+	 * 第四部返回执行结果
+	 * 第1,3同属一个事务,如果在2中断了,第一步是否插入成功
+	 * 如果2中通过异常来中断,第一步是否插入成功
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ttae")
+	public Map<String, Object> testTranstationAndException(){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("status", 2);
+		try {
+			map=iGysDemoService.insertTestTranstationAndException();
+		}catch(MyException e){
+			map.put("msg", "我的异常:"+e.getMessage()+";"+System.currentTimeMillis());
+		}catch (Exception e) {
+			e.printStackTrace();
+			map.put("msg", "程序异常:"+System.currentTimeMillis());
+		}
+		return map;
 	}
 	
 }
