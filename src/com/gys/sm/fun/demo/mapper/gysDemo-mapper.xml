@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gys.sm.fun.demo.dao.IGysDemoDao">
-
+	<!-- <cache eviction=""></cache> -->
   <insert id="insertRole" parameterType="com.gys.sm.fun.demo.bean.GysBean" keyProperty="id" useGeneratedKeys="true">
   	insert into gys 
   	(roleName,note)
