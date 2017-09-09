@@ -26,6 +26,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gys.sm.fun.demo.bean.GysBean;
+import com.gys.sm.fun.demo.bean.People;
 import com.gys.sm.fun.demo.bean.Student;
 import com.gys.sm.fun.demo.result.List3Result;
 import com.gys.sm.fun.demo.service.IGysDemoService;
@@ -351,5 +352,56 @@ public class GysDemoController {
 		}
 		return map;
 	}
+	/**
+	 * 浮点型在数据库和java中的表现
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/price")
+	public List<GysBean> getPrice(){
+		List<GysBean> list=null;
+		try {
+			list=iGysDemoService.getPrice();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
+	/**
+	 * 去ajax测试页
+	 * @return
+	 */
+	@RequestMapping("/ajaxPage")
+	public String ajaxPage(ModelAndView view){
+		return "gysDemo/testAjax";
+	}
+	
+	/**
+	 * 测试ajax 的加载效果
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/testAjax")
+	public Map<String, Object> testAjax(){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("status", 2);
+		map.put("msg", "失败啦啦啦啦了");
+		return map;
+	}
+	
+	/**
+	 * 测试ajaxlist传参
+	 * 如果前台传递的是带有list的格式数据,后台接受需要使用@RequestBody
+	 * 并且前台ajax需要添加contentType:"application/json",
+	 * 并且把数据转换成json字符创
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajaxList")
+	public People ajaxList(@RequestBody People people){
+		System.out.println("=====================");
+		System.out.println(people.getName());
+		return people;
+	}
 }

@@ -6,10 +6,10 @@
 bg.ajax=function(opts){
 	var d={
 		load:true,//加载动画
-		loadText:"",
-		done:true,
-		fail:true,
-		always:true,
+		loadText:"数据处理中...",
+		done:true,//是否需要执行成功拦截步骤
+		fail:true,//是否需要执行失败统一提示
+		always:true,//不管成功和失败,是否都执行always(比如未true:ajax效果在ajax结束后不关闭)
 		//contentType:"application/json",
 		data:{},
 		success:function(data,textStatus,jqXHR){},
@@ -50,10 +50,11 @@ bg.ajax=function(opts){
 			opts.error(jqXHR,textStatus,errorThrown);
 			return;
 		}
-		$.ui_dialog({
+		alert("连接服务器失败！");
+		/*$.ui_dialog({
 			type:"e",
 			con:"连接服务器失败！",
-		});
+		});*/
 	}).always(function(){
 		if(!opts.always){
 			return;

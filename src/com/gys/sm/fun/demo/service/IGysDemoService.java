@@ -22,4 +22,10 @@ public interface IGysDemoService {
 	List<Student> getStudentList3 () throws Exception;
 	
 	Map<String, Object> insertTestTranstationAndException() throws Exception;
+	/**
+	 * 查看浮点型在mysql和java中的显示
+	 * @return
+	 * @throws Exception
+	 */
+	List<GysBean> getPrice() throws Exception;
 }

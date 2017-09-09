@@ -47,4 +47,10 @@ public interface IGysDemoDao {
 	 * @throws Exception
 	 */
 	List<Student> getStudentList3 () throws Exception;
+	/**
+	 * 查看浮点型在mysql和java中的显示
+	 * @return
+	 * @throws Exception
+	 */
+	List<GysBean> getPrice() throws Exception;
 }	

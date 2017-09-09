@@ -114,5 +114,7 @@
   	秒到时间    00:02:1
   	select sec_to_time(121)  ==>00:02:1
    -->
-  
+  <select id="getPrice" resultType="com.gys.sm.fun.demo.bean.GysBean">
+  	select * from gys;
+  </select>
 </mapper>

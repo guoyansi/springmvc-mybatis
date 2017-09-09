@@ -100,6 +100,10 @@ public class GysDemoService implements IGysDemoService{
 		map.put("msg", "插入成功");
 		return map;
 	}
+	@Override
+	public List<GysBean> getPrice() throws Exception {
+		return IGysDemoDao.getPrice();
+	}
 	
 	
 }
