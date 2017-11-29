@@ -49,6 +49,11 @@ public class GysDemoController {
 	@Autowired
 	private GysServiceImpl si;
 	
+	@RequestMapping("/test")
+	public String test1(){
+		return "gysDemo/test";
+	}
+	
 	@RequestMapping("/page")
 	public ModelAndView goPage(ModelAndView view,HttpServletRequest request,String html){
 		
